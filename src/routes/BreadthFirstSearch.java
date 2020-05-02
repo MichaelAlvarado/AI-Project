@@ -1,6 +1,5 @@
 package routes;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import collection.Graph;
@@ -8,11 +7,9 @@ import collection.Graph.Node;
 
 public class BreadthFirstSearch {
 
-
-
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void BFS(Graph graph, int initialPosition) 
-	{ 
+	{
 		//Initialize the visited and queue list
 		boolean visited[] = new boolean[graph.size()]; 
 		LinkedList<Node> queue = new LinkedList<Node>(); 
@@ -33,5 +30,6 @@ public class BreadthFirstSearch {
 					queue.add(nodeChildren);	
 			}	
 		} 
-	} 
+	}
+	
 }
