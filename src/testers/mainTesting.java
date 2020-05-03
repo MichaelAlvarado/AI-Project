@@ -1,6 +1,7 @@
 package testers;
 
 import graph.Graph;
+import graph.Node;
 import routes.GraphTraversal;
 
 public class mainTesting {
@@ -23,11 +24,21 @@ public class mainTesting {
 		graph.addEdge(0, 4, 6);
 		graph.addEdge(0, 6, 7);
 
-		System.out.println("breadth first print:");
+		System.out.println("Breadth First print:");
 		GraphTraversal.BFSPrint(graph, 0);
 
-		System.out.println("\ndepth first print:");
+		System.out.println("\nDepth First print:");
 		GraphTraversal.DFSPrint(graph, 0);
+		
+		System.out.println("\nBreadth First Search Path from Node 1 to Node 6");
+		for(Node<Integer> node : GraphTraversal.BFSRoute(graph, graph.getNode(0), graph.getNode(5))) {
+			System.out.println(node.get());
+		}
+		
+		System.out.println("\nDepth First Search Path from Node 1 to Node 6");
+		for(Node<Integer> node : GraphTraversal.DFSRoute(graph, graph.getNode(0), graph.getNode(5))) {
+			System.out.println(node.get());
+		}
 		//		BreadthFirstSearch.BFS(graph, 0);
 		//		
 		//		Graph<Integer> graph2 = new Graph<Integer>();

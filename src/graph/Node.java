@@ -12,12 +12,33 @@ import graph.Edge;
 @SuppressWarnings("rawtypes")
 public class Node<E>{
 
+	Node parent; //Use to have a path
 	E object;
 	LinkedList<Edge> edges;
 
 	public Node(E arg) {
 		object = arg;
 		edges = new LinkedList<Edge>();
+	}
+	
+	/**
+	 * Use to build a path
+	 * @author Michael J. Alvarado
+	 * @date May 3, 2020
+	 * @param parent
+	 */
+	public void setParent(Node parent) {
+		this.parent = parent;
+	}
+	
+	/**
+	 * Use to build a path
+	 * @author Michael J. Alvarado
+	 * @date May 3, 2020
+	 * @param parent
+	 */
+	public Node getParent() {
+		return parent;
 	}
 
 	public E get() {
