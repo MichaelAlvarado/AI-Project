@@ -18,6 +18,8 @@ public class BreadthFirstSearch {
 		// Mark the current node as visited and enqueue it 
 		visited[initialPosition]=true; 
 		queue.add(graph.getNode(initialPosition)); 
+		
+		//BTS
 		while (queue.size() != 0) 
 		{ 
 			// Dequeue a Node from queue and print it 
@@ -26,8 +28,10 @@ public class BreadthFirstSearch {
 			System.out.println(node.get().toString()+" ");  
 
 			LinkedList<Node> childrens = node.getNodeChildrens();
+			
+			//Add the childrens not visited or already in queue
 			for (Node nodeChildren : childrens) {
-				if(!visited[graph.indexOf(nodeChildren)])
+				if(!visited[graph.indexOf(nodeChildren)] && queue.indexOf(nodeChildren) < 0)
 					queue.add(nodeChildren);	
 			}	
 		} 
