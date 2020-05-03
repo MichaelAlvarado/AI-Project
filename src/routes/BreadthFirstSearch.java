@@ -3,9 +3,10 @@ package routes;
 import java.util.LinkedList;
 
 import collection.Graph;
-import collection.Graph.Node;
+import collection.Node;
 
 public class BreadthFirstSearch {
+
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void BFS(Graph graph, int initialPosition) 
@@ -21,12 +22,12 @@ public class BreadthFirstSearch {
 		{ 
 			// Dequeue a Node from queue and print it 
 			Node node = queue.poll(); 
-			visited[graph.getNodeIndex(node)] = true;
+			visited[graph.indexOf(node)] = true;
 			System.out.println(node.get().toString()+" ");  
 
 			LinkedList<Node> childrens = node.getNodeChildrens();
 			for (Node nodeChildren : childrens) {
-				if(!visited[graph.getNodeIndex(nodeChildren)])
+				if(!visited[graph.indexOf(nodeChildren)])
 					queue.add(nodeChildren);	
 			}	
 		} 
