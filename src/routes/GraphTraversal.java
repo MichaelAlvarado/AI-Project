@@ -2,8 +2,8 @@ package routes;
 
 import java.util.LinkedList;
 
-import collection.Graph;
-import collection.Node;
+import graph.Graph;
+import graph.Node;
 
 public class GraphTraversal {
 
@@ -63,7 +63,7 @@ public class GraphTraversal {
 		visited[initialPosition]=true; 
 		queue.add(graph.getNode(initialPosition)); 
 		
-		//BTS
+		//DFS
 		while (queue.size() != 0) 
 		{ 
 			// Dequeue a Node from queue and print it 

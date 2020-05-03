@@ -1,4 +1,4 @@
-package collection;
+package graph;
 
 import java.util.LinkedList;
 

@@ -1,6 +1,6 @@
 package testers;
 
-import collection.Graph;
+import graph.Graph;
 import routes.GraphTraversal;
 
 public class mainTesting {

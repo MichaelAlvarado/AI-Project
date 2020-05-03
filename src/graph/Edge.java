@@ -1,4 +1,4 @@
-package collection;
+package graph;
 /**
  * 
  * @author Michael J. Alvarado

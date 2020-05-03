@@ -1,7 +1,8 @@
-package collection;
+package graph;
 
 import java.util.LinkedList;
-import collection.Edge;
+
+import graph.Edge;
 
 /**
  * 
