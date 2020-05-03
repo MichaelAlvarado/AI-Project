@@ -11,8 +11,8 @@ import java.util.LinkedList;
 public class Graph<E>{
 
 	LinkedList<Node<E>> nodes;
-	
-	public Graph() {
+
+	public Graph(){
 		nodes = new LinkedList<Node<E>>();
 	}
 
@@ -90,5 +90,6 @@ public class Graph<E>{
 		}
 		return null;
 	}
+	
 	
 }

@@ -57,17 +57,17 @@ public class GraphTraversal {
 	{
 		//Initialize the visited and queue list
 		boolean visited[] = new boolean[graph.size()]; 
-		LinkedList<Node> queue = new LinkedList<Node>(); 
+		LinkedList<Node> stack = new LinkedList<Node>(); 
 
 		// Mark the current node as visited and enqueue it 
 		visited[initialPosition]=true; 
-		queue.add(graph.getNode(initialPosition)); 
+		stack.add(graph.getNode(initialPosition)); 
 
 		//DFS
-		while (queue.size() != 0) 
+		while (stack.size() != 0) 
 		{ 
 			// Dequeue a Node from queue and print it 
-			Node node = queue.pollLast(); 
+			Node node = stack.pollLast(); 
 			visited[graph.indexOf(node)] = true;
 			System.out.println(node.get().toString()+" ");  
 
@@ -75,8 +75,8 @@ public class GraphTraversal {
 
 			//Add the childrens not visited or already in queue
 			for (Node nodeChildren : childrens) {
-				if(!visited[graph.indexOf(nodeChildren)] && queue.indexOf(nodeChildren) < 0)
-					queue.add(nodeChildren);	
+				if(!visited[graph.indexOf(nodeChildren)] && stack.indexOf(nodeChildren) < 0)
+					stack.add(nodeChildren);	
 			}	
 		} 
 	}
@@ -138,17 +138,17 @@ public class GraphTraversal {
 	{
 		//Initialize the visited and queue list
 		boolean visited[] = new boolean[graph.size()]; 
-		LinkedList<Node> queue = new LinkedList<Node>(); 
+		LinkedList<Node> stack = new LinkedList<Node>(); 
 
 		// Mark the current node as visited and enqueue it 
 		visited[graph.indexOf(from)]=true; 
-		queue.add(from); 
+		stack.add(from); 
 
 		//DFS
-		while (queue.size() != 0) 
+		while (stack.size() != 0) 
 		{ 
 			// Dequeue a Node from queue and print it 
-			Node node = queue.pollLast(); 
+			Node node = stack.pollLast(); 
 			visited[graph.indexOf(node)] = true;
 			if(node.equals(to)) {
 				return reconstructPath(node);
@@ -158,9 +158,9 @@ public class GraphTraversal {
 
 			//Add the childrens not visited or already in queue
 			for (Node nodeChildren : childrens) {
-				if(!visited[graph.indexOf(nodeChildren)] && queue.indexOf(nodeChildren) < 0) {
+				if(!visited[graph.indexOf(nodeChildren)] && stack.indexOf(nodeChildren) < 0) {
 					nodeChildren.setParent(node);
-					queue.add(nodeChildren);	
+					stack.add(nodeChildren);	
 				}
 			}	
 		}
