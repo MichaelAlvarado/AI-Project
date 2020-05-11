@@ -19,4 +19,9 @@ public class Edge{
 	public Node getNode() {
 		return node;
 	}
+	
+	public double getValue() {
+		return value;
+	}
+
 }

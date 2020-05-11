@@ -168,7 +168,7 @@ public class GraphTraversal {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private static LinkedList<Node> reconstructPath(Node node){
+	public static LinkedList<Node> reconstructPath(Node node){
 		LinkedList<Node> path = new LinkedList<Node>();
 		while(node != null) {
 			path.addFirst(node);

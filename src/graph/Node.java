@@ -12,10 +12,15 @@ import graph.Edge;
 @SuppressWarnings("rawtypes")
 public class Node<E>{
 
-	Node parent; //Use to have a path
+	//Use to Create paths
+	Node parent; 
+	double value; 
+
+	//Node Info
 	E object;
 	LinkedList<Edge> edges;
-
+	
+	
 	public Node(E arg) {
 		object = arg;
 		edges = new LinkedList<Edge>();
@@ -39,6 +44,14 @@ public class Node<E>{
 	 */
 	public Node getParent() {
 		return parent;
+	}
+	
+	public double getValue() {
+		return value;
+	}
+
+	public void setValue(double value) {
+		this.value = value;
 	}
 
 	public E get() {
