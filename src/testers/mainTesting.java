@@ -10,6 +10,7 @@ import routes.SimulatedAnnealing;
 public class mainTesting {
 
 	public static void main(String[] args) {
+		int i = 0;
 		Graph<String> graph = new Graph<String>();
 		graph.addNode("NY"); 
 		graph.addNode("NJ");
