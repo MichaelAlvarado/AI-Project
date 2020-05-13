@@ -6,6 +6,7 @@ import graph.Graph;
 import graph.Node;
 import routes.Annealing;
 import routes.GraphTraversal;
+import routes.SimulatedAnnealing;
 
 public class mainTesting {
 
@@ -24,10 +25,13 @@ public class mainTesting {
 		graph.addEdge(7, "Florida", "Ohio");
 		graph.addEdge(5, "Ohio", "Kansas");
 		graph.addEdge(10, "Kansas", "California");
+		graph.addEdge(10, "Kansas", "Florida");
 		graph.addEdge(3,"Washington", "California");
-		graph.addEdge(2, "Washinfton", "Kansas");
+		graph.addEdge(2, "Washington", "Kansas");
 
-		LinkedList<Node> list = Annealing.annealingSearch(graph.getNode("NY"), graph.getNode("California"));
+//		LinkedList<Node> list = Annealing.annealingSearch(graph.getNode("NY"), graph.getNode("California"));
+		Node e = SimulatedAnnealing.simulatedAnnealingPath(graph.getNode("NY"), graph.getNode("California"));
+		LinkedList<Node> list = GraphTraversal.reconstructPath(e);
 		System.out.println("Traveled cities:");
 		for(Node<String> node: list) {
 			System.out.println(node.get());

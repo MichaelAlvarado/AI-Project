@@ -176,6 +176,17 @@ public class GraphTraversal {
 		}
 		return path;
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public static LinkedList<Node> reconstructPath(Node start, Node end){
+		LinkedList<Node> path = new LinkedList<Node>();
+		while(!end.equals(start)) {
+			path.addFirst(end);
+			end = end.getParent();
+		}
+		path.addFirst(end);
+		return path;
+	}
 
 
 }

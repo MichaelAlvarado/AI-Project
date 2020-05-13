@@ -24,6 +24,7 @@ public class Node<E>{
 	public Node(E arg) {
 		object = arg;
 		edges = new LinkedList<Edge>();
+		value = 0;
 	}
 	
 	/**
@@ -72,6 +73,14 @@ public class Node<E>{
 			childrens.add(e.getNode());
 		}
 		return childrens;
+	}
+	
+	public Node clone() {
+		Node clone = new Node(this.object);
+		clone.setParent(this.getParent());
+		clone.setValue(this.getValue());
+		clone.edges = this.getEdges();
+		return clone;
 	}
 
 }
