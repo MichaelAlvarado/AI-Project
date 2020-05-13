@@ -13,7 +13,7 @@ public class SimulatedAnnealing {
 	protected static double max_Temp =100;
 	protected static double min_Temp = 0.01;
 	//For linear Cooling
-	protected static double cooling_rate = 0.5;
+	protected static double cooling_rate = 0.05;
 	//For percentenge Cooling
 	protected static double alpha = 0.99; //the temperature decrease (1-alpha) percent each iteration
 	//Local Variable of use
@@ -22,7 +22,7 @@ public class SimulatedAnnealing {
 	/**
 	 * Generic Optimize Path Search using Simulated Annealing Search method
 	 * @author Michael J. Alvarado
-	 * @date May 13, 2020
+	 * @date May 10, 2020
 	 * @param start
 	 * @param end
 	 * @return the goal Node with path on its parents (If used with reconstructPath method it will have a list of nodes making its path)
@@ -55,18 +55,18 @@ public class SimulatedAnnealing {
 	/**
 	 * Temperature Schedule to use in Simulated Annealing
 	 * @author Michael J. Alvarado
-	 * @date May 13, 2020
+	 * @date May 10, 2020
 	 * @param temp
 	 * @return
 	 */
 	private static double temperatureSchedule(double temp) {
-		return AlphaTemperatureSchedule(temp);
+		return linearTemperatureSchedule(temp);
 	}
 	
 	/**
 	 * Linear Cooling Temperature 
 	 * @author Michael J. Alvarado
-	 * @date May 13, 2020
+	 * @date May 10, 2020
 	 * @return
 	 */
 	private static double linearTemperatureSchedule(double temp) {
@@ -76,7 +76,7 @@ public class SimulatedAnnealing {
 	/**
 	 * Cooling Temperature by a (1-alpha) percent rate
 	 * @author Michael J. Alvarado
-	 * @date May 13, 2020
+	 * @date May 10, 2020
 	 * @return returns the 
 	 */
 	private static double AlphaTemperatureSchedule(double temp) {
@@ -107,7 +107,7 @@ public class SimulatedAnnealing {
 	/**
 	 * Creates a random path from node start to end
 	 * @author Michael J. Alvarado
-	 * @date May 13, 2020
+	 * @date May 11, 2020
 	 * @param start - node to start the search
 	 * @param end - goal Node
 	 * @param visited - Send a HashSet of already visited Node so the Algorithm wont travel through them again, if null it will assume no Nodes has been visited

@@ -4,7 +4,6 @@ import java.util.LinkedList;
 
 import graph.Graph;
 import graph.Node;
-import routes.Annealing;
 import routes.GraphTraversal;
 import routes.SimulatedAnnealing;
 
