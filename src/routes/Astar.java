@@ -55,7 +55,7 @@ public class Astar {
 
 
 	private static double calculateH(Node<City> from, Node<City> goal) {
-		return Road.getDistance(from, goal);
+		return Road.getDistance(from.get(), goal.get());
 	}	
 	
 	

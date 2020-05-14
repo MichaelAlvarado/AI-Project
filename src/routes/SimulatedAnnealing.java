@@ -47,7 +47,7 @@ public class SimulatedAnnealing {
 			}
 			t = temperatureSchedule(t);
 		}
-		System.out.println("Route Value: "+s.getValue());
+//		System.out.println("Route Value: "+s.getValue());
 		return s;
 	}
 

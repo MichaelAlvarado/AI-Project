@@ -39,6 +39,7 @@ public class mainTesting {
 		for(Node<String> node: list) {
 			System.out.println(node.get());
 		}
+		
 		executeTime = System.currentTimeMillis();
 		Node r = RandomSearch.randomSearch(graph.getNode("NY"), graph.getNode("California"));
 		System.out.println("Execution time of Random Search: "+(System.currentTimeMillis()-executeTime)+" ms");

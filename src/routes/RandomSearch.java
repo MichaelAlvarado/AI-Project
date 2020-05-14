@@ -29,7 +29,7 @@ public class RandomSearch {
 				min = randomPath;
 			}
 		}
-		System.out.println("Route Value: "+min.getValue());
+//		System.out.println("Route Value: "+min.getValue());
 		return min;
 	}
 	/**
