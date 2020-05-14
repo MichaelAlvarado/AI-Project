@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import graph.Graph;
 import graph.Node;
 import routes.GraphTraversal;
+import routes.RandomSearch;
 import routes.SimulatedAnnealing;
 
 public class mainTesting {
@@ -29,9 +30,19 @@ public class mainTesting {
 		graph.addEdge(2, "Washington", "Kansas");
 
 //		LinkedList<Node> list = Annealing.annealingSearch(graph.getNode("NY"), graph.getNode("California"));
+		long executeTime = System.currentTimeMillis();
 		Node e = SimulatedAnnealing.simulatedAnnealingPath(graph.getNode("NY"), graph.getNode("California"));
+		System.out.println("Execution time of SimulatedAnneling: "+(System.currentTimeMillis()-executeTime)+" ms");
 		LinkedList<Node> list = GraphTraversal.reconstructPath(e);
-		System.out.println("Traveled cities:");
+		System.out.println("Simulated Annealing Traveled cities:");
+		for(Node<String> node: list) {
+			System.out.println(node.get());
+		}
+		executeTime = System.currentTimeMillis();
+		Node r = RandomSearch.randomSearch(graph.getNode("NY"), graph.getNode("California"));
+		System.out.println("Execution time of Random Search: "+(System.currentTimeMillis()-executeTime)+" ms");
+		list = GraphTraversal.reconstructPath(r);
+		System.out.println("Random Search Traveled cities:");
 		for(Node<String> node: list) {
 			System.out.println(node.get());
 		}

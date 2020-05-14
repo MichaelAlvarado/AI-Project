@@ -13,7 +13,7 @@ public class SimulatedAnnealing {
 	protected static double max_Temp =100;
 	protected static double min_Temp = 0.0001;
 	//For linear Cooling
-	protected static double cooling_rate = 0.005;
+	protected static double cooling_rate = 0.5;
 	//For percentage Cooling
 	protected static double alpha = 0.99; //the temperature decrease (1-alpha) percent each iteration
 	//Local Variable of use
@@ -24,18 +24,18 @@ public class SimulatedAnnealing {
 	 * @author Michael J. Alvarado
 	 * @date May 10, 2020
 	 * @param start
-	 * @param end
+	 * @param goal
 	 * @return the goal Node with path on its parents (If used with reconstructPath method it will have a list of nodes making its path)
 	 */
 	@SuppressWarnings("rawtypes")
-	public static Node simulatedAnnealingPath(Node start, Node end) {
+	public static Node simulatedAnnealingPath(Node start, Node goal) {
 		//temparatures starts a its highest
 		double t = max_Temp;
-		Node s = randomPath(start, end, null); 
+		Node s = randomPath(start, goal, null); 
 		//Uses temperature cooling
 		while (t > min_Temp) {
 			//Takes random Path
-			Node mutate = mutate(start, end);
+			Node mutate = mutate(start, goal);
 			double delta_e = s.getValue() - mutate.getValue();
 			//Change paths to most effective
 			if(delta_e>0) {
@@ -48,7 +48,6 @@ public class SimulatedAnnealing {
 			t = temperatureSchedule(t);
 		}
 		System.out.println("Route Value: "+s.getValue());
-		reconstructPath(start, s);
 		return s;
 	}
 
