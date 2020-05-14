@@ -2,58 +2,48 @@ package testers;
 
 import java.util.LinkedList;
 
+import elements.City;
 import graph.Graph;
 import graph.Node;
 import routes.Astar;
-import routes.SimulatedAnnealing;
 
 public class AStarTesting {
 
 	public static void main(String[] args) {
-		Graph<String> graph = new Graph<String>();
-		graph.addNode("NY");
-		graph.getNode("NY").setX(3);
-		graph.getNode("NY").setY(0);
+		Graph<City> graph = new Graph<City>();
 		
-		graph.addNode("NJ");
-		graph.getNode("NJ").setX(3);
-		graph.getNode("NJ").setY(5);
-		
-		graph.addNode("FL");
-		graph.getNode("FL").setX(8);
-		graph.getNode("FL").setY(2);
-		
-		graph.addNode("Kansas");
-		graph.getNode("Kansas").setX(15);
-		graph.getNode("Kansas").setY(5);
-		
-		graph.addNode("Ohio");
-		graph.getNode("Ohio").setX(20);
-		graph.getNode("Ohio").setY(2);
-		
-		graph.addNode("Cali");
-		graph.getNode("Cali").setX(20);
-		graph.getNode("Cali").setY(3);
-		
-		graph.addNode("Wash");
-		graph.getNode("Wash").setX(15);
-		graph.getNode("Wash").setY(6);
+		City NY = new City("NY", 3, 0);
+		City NJ = new City("NJ", 3, 5);
+		City FL = new City("FL", 8, 2);
+		City OH = new City("OHIO", 20, 5);
+		City CL = new City("CALIFORNIA", 20, 3);
+		City KN = new City("KANSAS", 15, 5);
+		City WA = new City("WASHINGTON", 12, 6);
 
 		
-		graph.addEdge(1.5,"NY", "NJ");
-		graph.addEdge(5, "NY", "FL");
-		graph.addEdge(7, "Florida", "Ohio");
-		graph.addEdge(5, "Ohio", "Kansas");
-		graph.addEdge(10, "Kansas", "Cali");
-		graph.addEdge(10, "Kansas", "FL");
-		graph.addEdge(3,"Wash", "Cali");
-		graph.addEdge(2, "Wash", "Kansas");
+		graph.addNode(NY);
+		graph.addNode(NJ);
+		graph.addNode(FL);
+		graph.addNode(KN);
+		graph.addNode(OH);
+		graph.addNode(CL);
+		graph.addNode(WA);
+
+		
+		graph.addEdge(1.5,NY, NJ);
+		graph.addEdge(5, NY, FL);
+		graph.addEdge(7, FL, OH);
+		graph.addEdge(5, OH , KN );
+		graph.addEdge(10, KN, CL);
+		graph.addEdge(10, KN, FL);
+		graph.addEdge(3,WA, CL);
+		graph.addEdge(2, WA, KN);
 		
 		
-		LinkedList<Node> list = Astar.ARoute(graph.getNode("NY"), graph.getNode("Cali"));
+		LinkedList<Node<City>> list = Astar.ARoute(graph.getNode(NY), graph.getNode(CL));
 		System.out.println("Traveled cities:");
-		for(Node node: list) {
-			System.out.println(node.get());
+		for(Node<City> node: list) {
+			System.out.println(node.get().getName());
 		}
 		
 	}

@@ -4,13 +4,13 @@ import graph.Node;
 
 public class Road {
 	
-	Node from;
-	Node to;
+	Node<City> from;
+	Node<City> to;
 	
 	int speedLimit;
 	double traffic;
 	
-	public Road(Node from, Node to, int speedLimit) {
+	public Road(Node<City> from, Node<City>  to, int speedLimit) {
 		this.from = from;
 		this.to = to;
 		this.speedLimit = speedLimit;
@@ -27,13 +27,14 @@ public class Road {
 		return effTime;
 	}
 	
-	public static double getDistance(Node from, Node to) {
-		double dX = (from.getX() - to.getX());
-		double dY = (from.getY() - to.getY());
+	public static double getDistance(Node<City>  from, Node<City>  to) {
+		double dX = (from.get().getX() - to.get().getX());
+		double dY = (from.get().getY() - to.get().getY());
 		
 		return Math.sqrt(dX * dX + dY * dY);
 	}
 	
+	/*
 	private int speedLimit() {
 		return this.speedLimit;
 	}
@@ -41,4 +42,5 @@ public class Road {
 	private double getTraffic() {
 		return this.traffic;
 	}
+	*/
 }

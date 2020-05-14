@@ -5,18 +5,17 @@ package graph;
  * @date 5/1/2020
  */
 
-@SuppressWarnings("rawtypes")
-public class Edge{
+public class Edge<E>{
 
 	double value; //Cost of the path
-	Node node;
+	Node<E> node;
 
-	public Edge(double value, Node node) {
+	public Edge(double value, Node<E> node) {
 		this.value = value;
 		this.node = node;
 	}
 
-	public Node getNode() {
+	public Node<E> getNode() {
 		return node;
 	}
 	

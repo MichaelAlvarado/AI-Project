@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+import elements.City;
 import elements.Road;
 import graph.Edge;
 import graph.Graph;
@@ -17,9 +18,9 @@ public class Astar {
 	// total cost
 	static double f;
 	
-	static Queue<Node> frontier = new PriorityQueue<Node>();
+	static Queue<Node<City>> frontier = new PriorityQueue<Node<City>>();
 	//path
-	static LinkedList<Node> explored = new LinkedList<Node>();
+	static LinkedList<Node<City>> explored = new LinkedList<Node<City>>();
 
 
 
@@ -28,17 +29,19 @@ public class Astar {
 	 * @author Andrea Miranda Acevedo
 	 * @date May 13, 2020
 	 */
-	public static LinkedList<Node> ARoute(Node from, Node goal){
+	public static LinkedList<Node<City>> ARoute(Node<City> from, Node<City> goal){
 		if(from == goal){
 			explored.add(goal);
 			return explored;
 		}
 		
-		Node start = from; 
+		Node<City> start = from; 
 		explored.add(start);
 		
 		LinkedList<Edge> L = from.getEdges();
-		Node temp;
+		
+		Node<City> temp;
+		
 		for (Edge e : L) {
 			f = e.getValue() + calculateH(e.getNode(), goal);
 			temp = e.getNode();
@@ -53,7 +56,7 @@ public class Astar {
 	
 	
 	
-	public static double calculateH(Node from, Node to){
+	public static double calculateH(Node<City> from, Node<City> to){
 		return Road.getDistance(from,to);
 	}
 	
