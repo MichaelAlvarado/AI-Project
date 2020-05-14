@@ -40,5 +40,4 @@ public class Road {
 	private double getTraffic() {
 		return this.traffic;
 	}
-	
 }
