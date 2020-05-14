@@ -75,11 +75,22 @@ public class Node<E>{
 		return childrens;
 	}
 	
-	public Node clone() {
+	/**
+	 * clone this node and its parent hierarchy till stop Node found
+	 * @author Michael J. Alvarado
+	 * @date May 14, 2020
+	 * @param stop - parent node to stop the cloning
+	 * @return clone intanceof this with clone parents
+	 * @throws StackOverflow if stop is not in the parents hierarchy.
+	 */
+	public Node pathClone(Node stop) {
 		Node clone = new Node(this.object);
-		clone.setParent(this.getParent());
-		clone.setValue(this.getValue());
+		clone.setValue(new Double(this.getValue()));
 		clone.edges = this.getEdges();
+		if(this.get().equals(stop.get())) {
+			return this; 
+		}
+		clone.setParent(this.getParent().pathClone(stop));
 		return clone;
 	}
 

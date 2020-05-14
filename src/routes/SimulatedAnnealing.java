@@ -8,13 +8,13 @@ import graph.Edge;
 import graph.Node;
 
 public class SimulatedAnnealing {
-	
+
 	//Cooling Parameters
 	protected static double max_Temp =100;
-	protected static double min_Temp = 0.01;
+	protected static double min_Temp = 0.0001;
 	//For linear Cooling
-	protected static double cooling_rate = 0.05;
-	//For percentenge Cooling
+	protected static double cooling_rate = 0.005;
+	//For percentage Cooling
 	protected static double alpha = 0.99; //the temperature decrease (1-alpha) percent each iteration
 	//Local Variable of use
 	private static Random rand = new Random();
@@ -45,10 +45,10 @@ public class SimulatedAnnealing {
 			else if (Math.random() < Math.exp(delta_e/t)) {
 				s = reconstructPath(start, mutate).getLast();
 			}
-			System.out.println(Math.exp(delta_e/t));
 			t = temperatureSchedule(t);
 		}
-		System.out.println(s.getValue());
+		System.out.println("Route Value: "+s.getValue());
+		reconstructPath(start, s);
 		return s;
 	}
 
@@ -62,7 +62,7 @@ public class SimulatedAnnealing {
 	private static double temperatureSchedule(double temp) {
 		return linearTemperatureSchedule(temp);
 	}
-	
+
 	/**
 	 * Linear Cooling Temperature 
 	 * @author Michael J. Alvarado
@@ -72,7 +72,7 @@ public class SimulatedAnnealing {
 	private static double linearTemperatureSchedule(double temp) {
 		return temp-(cooling_rate);
 	}
-	
+
 	/**
 	 * Cooling Temperature by a (1-alpha) percent rate
 	 * @author Michael J. Alvarado
@@ -100,7 +100,7 @@ public class SimulatedAnnealing {
 		for(int i = 0; i < nodeIndex; i++) {
 			visited.add(path.get(i));
 		}
-//		start = path.get(rand.nextInt(path.size()-2)+1); //take a random node to mutate
+		//		start = path.get(rand.nextInt(path.size()-2)+1); //take a random node to mutate
 		return randomPath(path.get(nodeIndex), end, visited);
 	}
 
@@ -115,29 +115,40 @@ public class SimulatedAnnealing {
 	 */
 	@SuppressWarnings("rawtypes")
 	private static Node randomPath(Node start, Node end, HashSet<Node> visited) {
+		
 		if(visited == null)
 			visited = new HashSet<Node>();
-		while(!start.equals(end)) {
-			visited.add(start);
-			Edge edge = (Edge) start.getEdges().get(rand.nextInt(start.getNodeChildrens().size()));
+		
+		Node currentNode = start;
+		
+		while(!currentNode.equals(end)) {
+			visited.add(currentNode);
+			//Random Children
+			Edge edge = (Edge) currentNode.getEdges().get(rand.nextInt(currentNode.getNodeChildrens().size()));
 			Node children = edge.getNode();
+			//Travel if the Node hasn't been visited
 			if(!visited.contains(children)) {
-				children.setParent(start);
+				children.setParent(currentNode);
 				children.setValue(0);
-				children.setValue(start.getValue()+edge.getValue());
-				start = children;
-			}else{
-				for(Node node: visited) {
-					if(start.getNodeChildrens().contains(node)) {
-						start = children;
+				children.setValue(currentNode.getValue()+edge.getValue());
+				currentNode = children;
+			}
+			else{
+				boolean stuck = true;
+				for(Node node: (LinkedList<Node>)currentNode.getNodeChildrens()) {
+					if(!visited.contains(node)) {
+						stuck = false;
 					}
+				}
+				if(stuck) {
+					currentNode = currentNode.getParent();
 				}
 			}
 		}
-		return start;
+		return currentNode;
 	}
 
-	
+
 	/**
 	 * Testing Purposes
 	 * @author Michael J. Alvarado
@@ -148,10 +159,11 @@ public class SimulatedAnnealing {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static LinkedList<Node> reconstructPath(Node start, Node end){
+		Node pathNode = end.pathClone(start);
 		LinkedList<Node> path = new LinkedList<Node>();
-		while(!end.equals(start)) {
-			path.addFirst(end.clone());
-			end = end.getParent();
+		while(!pathNode.equals(start)) {
+			path.addFirst(pathNode);
+			pathNode = pathNode.getParent();
 		}
 		path.addFirst(end);
 		return path;
