@@ -14,19 +14,30 @@ public class Node<E>{
 
 	//Use to Create paths
 	Node parent; 
-	double value; 
+	double value;
+
+	
+	/**
+	 * @author Andrea Miranda & Ramphis Lopez
+	 */
+
+	// Coordinates
+	double X;
+	double Y;
+
+
 
 	//Node Info
 	E object;
 	LinkedList<Edge> edges;
-	
-	
+
+
 	public Node(E arg) {
 		object = arg;
 		edges = new LinkedList<Edge>();
 		value = 0;
 	}
-	
+
 	/**
 	 * Use to build a path
 	 * @author Michael J. Alvarado
@@ -36,7 +47,7 @@ public class Node<E>{
 	public void setParent(Node parent) {
 		this.parent = parent;
 	}
-	
+
 	/**
 	 * Use to build a path
 	 * @author Michael J. Alvarado
@@ -46,7 +57,7 @@ public class Node<E>{
 	public Node getParent() {
 		return parent;
 	}
-	
+
 	public double getValue() {
 		return value;
 	}
@@ -58,15 +69,27 @@ public class Node<E>{
 	public E get() {
 		return object;
 	}
-	
+
 	public LinkedList<Edge> getEdges(){
 		return edges;
 	}
-	
+
 	public void addEdge(Edge edge) {
 		edges.add(edge);
 	}
+
+
+	public double getX() {
+		return X;
+	}
+
+
+	public double getY() {
+		return Y;
+	}
+
 	
+
 	public LinkedList<Node> getNodeChildrens() {
 		LinkedList<Node> childrens = new LinkedList<Node>();
 		for(Edge e: edges) {
@@ -74,7 +97,7 @@ public class Node<E>{
 		}
 		return childrens;
 	}
-	
+
 	/**
 	 * clone this node and its parent hierarchy till stop Node found
 	 * @author Michael J. Alvarado
