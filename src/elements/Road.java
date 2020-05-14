@@ -20,6 +20,7 @@ public class Road {
 		//output time will be in terms of hours
 		return effTime;
 	}
+	
 	private double getDistance() {
 		return this.distance;
 	}
