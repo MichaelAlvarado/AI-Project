@@ -10,10 +10,10 @@ import graph.Node;
 public class SimulatedAnnealing {
 
 	//Cooling Parameters
-	protected static double max_Temp =100;
+	protected static double max_Temp = 100;
 	protected static double min_Temp = 0.0001;
 	//For linear Cooling
-	protected static double cooling_rate = 0.5;
+	protected static double cooling_rate = 0.05;
 	//For percentage Cooling
 	protected static double alpha = 0.99; //the temperature decrease (1-alpha) percent each iteration
 	//Local Variable of use
@@ -59,7 +59,7 @@ public class SimulatedAnnealing {
 	 * @return
 	 */
 	private static double temperatureSchedule(double temp) {
-		return linearTemperatureSchedule(temp);
+		return AlphaTemperatureSchedule(temp);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class SimulatedAnnealing {
 	}
 
 	/**
-	 * Cooling Temperature by a (1-alpha) percent rate
+	 * Cooling Temperature by a (1-alpha) percent rate (Better than linear Temperature Schedule)
 	 * @author Michael J. Alvarado
 	 * @date May 10, 2020
 	 * @return returns the 

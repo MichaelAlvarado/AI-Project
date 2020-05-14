@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import graph.Graph;
 import graph.Node;
+import routes.Astar;
 import routes.GraphTraversal;
 import routes.RandomSearch;
 import routes.SimulatedAnnealing;
@@ -46,6 +47,7 @@ public class mainTesting {
 		for(Node<String> node: list) {
 			System.out.println(node.get());
 		}
+		
 		
 //		Graph<Integer> graph = new Graph<Integer>();
 //		graph.addNode(1);
