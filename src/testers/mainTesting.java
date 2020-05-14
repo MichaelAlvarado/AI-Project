@@ -3,9 +3,9 @@ package testers;
 import java.util.LinkedList;
 
 import graph.Graph;
+import graph.GraphTraversal;
 import graph.Node;
 import routes.Astar;
-import routes.GraphTraversal;
 import routes.RandomSearch;
 import routes.SimulatedAnnealing;
 

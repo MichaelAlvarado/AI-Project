@@ -1,9 +1,6 @@
-package routes;
+package graph;
 
 import java.util.LinkedList;
-
-import graph.Graph;
-import graph.Node;
 
 public class GraphTraversal {
 

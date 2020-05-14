@@ -10,9 +10,9 @@ import org.junit.Test;
 import elements.City;
 import elements.Road;
 import graph.Graph;
+import graph.GraphTraversal;
 import graph.Node;
 import maps.PuertoRico;
-import routes.GraphTraversal;
 import routes.RandomSearch;
 import routes.SimulatedAnnealing;
 

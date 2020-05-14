@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import graph.Edge;
+import graph.GraphTraversal;
 import graph.Node;
 
 public class SimulatedAnnealing {

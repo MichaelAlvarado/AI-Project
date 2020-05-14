@@ -9,8 +9,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import graph.Graph;
+import graph.GraphTraversal;
 import graph.Node;
-import routes.GraphTraversal;
 import routes.RandomSearch;
 
 /**
