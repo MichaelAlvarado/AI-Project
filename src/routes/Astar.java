@@ -58,7 +58,10 @@ public class Astar {
 		return Road.getDistance(from, goal);
 	}	
 	
+	
 	/*
+	 * Heuristic function using travel time, has to be fixed
+	 * 
 	public static double calculateH(Node<City> from, Node<City> to, int speedLimit, double traffic){
 		return Road.TravelTime(Road.getDistance(from, to), speedLimit, traffic);
 	}
