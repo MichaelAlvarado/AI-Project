@@ -12,6 +12,7 @@ import elements.Road;
 import graph.Graph;
 import graph.Node;
 import routes.GraphTraversal;
+import routes.RandomSearch;
 import routes.SimulatedAnnealing;
 
 public class BigMapTest {
@@ -144,8 +145,12 @@ public class BigMapTest {
 	}
 
 	@Test
-	public void test() {
-		Node<City> e = SimulatedAnnealing.simulatedAnnealingPath(graph.getNode(salinas), graph.getNode(barranquitas));
+	public void SimulatedAnnealingtest() {
+		Node<City> start = graph.getNode(salinas);
+		Node<City> goal = graph.getNode(barranquitas);
+		long executeTime = System.currentTimeMillis();
+		Node<City> e = SimulatedAnnealing.simulatedAnnealingPath(start, goal);
+		System.out.println("Time of execution in Simulated Annealing: " + (System.currentTimeMillis()-executeTime) + " ms");
 		LinkedList<Node> result = GraphTraversal.reconstructPath(e);
 		LinkedList<City> expected = new LinkedList<City>();
 		expected.add(salinas);
@@ -154,9 +159,25 @@ public class BigMapTest {
 
 		assertTrue("Result is not the same size as expected", result.size()==expected.size());
 		for (int i = 0; i < result.size(); i++) {
-			System.out.println(expected.get(i).getName());
-			System.out.println(((City)result.get(i).get()).getName());
+			assertTrue("Not the optimize solution", result.get(i).get().equals(expected.get(i)));
+		}
+		assertTrue("Not the right value of the Path", e.getValue()==6);
+	}
+	@Test
+	public void RandomSearchtest() {
+		Node<City> start = graph.getNode(salinas);
+		Node<City> goal = graph.getNode(barranquitas);
+		long executeTime = System.currentTimeMillis();
+		Node<City> e = RandomSearch.randomSearch(start, goal);
+		System.out.println("Time of execution in Random Search: " + (System.currentTimeMillis()-executeTime) + " ms");
+		LinkedList<Node> result = GraphTraversal.reconstructPath(e);
+		LinkedList<City> expected = new LinkedList<City>();
+		expected.add(salinas);
+		expected.add(santaIsabel);
+		expected.add(barranquitas);
 
+		assertTrue("Result is not the same size as expected", result.size()==expected.size());
+		for (int i = 0; i < result.size(); i++) {
 			assertTrue("Not the optimize solution", result.get(i).get().equals(expected.get(i)));
 		}
 		assertTrue("Not the right value of the Path", e.getValue()==6);
