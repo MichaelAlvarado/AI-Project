@@ -10,15 +10,16 @@ import graph.Edge;
  * @date 5/1/2020
  */
 @SuppressWarnings("rawtypes")
-public class Node<E>{
+public class Node<E> implements Comparable<Node>{
 
 	//Use to Create paths
 	Node parent; 
 	double value;
-
+	double f;
 	
 	/**
 	 * @author Andrea Miranda & Ramphis Lopez
+	 * @date May 13, 2020
 	 */
 
 	// Coordinates
@@ -78,17 +79,29 @@ public class Node<E>{
 		edges.add(edge);
 	}
 
-
+	
 	public double getX() {
 		return X;
 	}
 
+	public void setX(double x) {
+		this.X = x;
+	}
 
 	public double getY() {
 		return Y;
 	}
 
-	
+	public void setY(double y) {
+		this.Y = y;
+	}
+	public double getF() {
+		return f;
+	}
+
+	public void setF(double f) {
+		this.f = f;
+	}
 
 	public LinkedList<Node> getNodeChildrens() {
 		LinkedList<Node> childrens = new LinkedList<Node>();
@@ -115,6 +128,17 @@ public class Node<E>{
 		}
 		clone.setParent(this.getParent().pathClone(stop));
 		return clone;
+	}
+
+	@Override
+	public int compareTo(Node n) {
+		if(this.f > n.getF()){
+			return 1;
+		}else if(this.f < n.getF()){
+			return -1;
+		}else{
+			return 0;
+		}
 	}
 
 }

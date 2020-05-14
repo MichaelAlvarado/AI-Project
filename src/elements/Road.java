@@ -6,6 +6,7 @@ public class Road {
 	
 	Node from;
 	Node to;
+	
 	int speedLimit;
 	double traffic;
 	

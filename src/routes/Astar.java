@@ -17,32 +17,37 @@ public class Astar {
 	// total cost
 	static double f;
 	
-	static Queue<Entry<Node, Double>> frontier = new PriorityQueue<Entry<Node, Double>>();
+	static Queue<Node> frontier = new PriorityQueue<Node>();
 	//path
-	static Queue<Node> explored = new LinkedList<Node>();
-	
-	
+	static LinkedList<Node> explored = new LinkedList<Node>();
+
+
 
 	/**
 	 * A* route path finding
-	 * @author 
-	 * @date May 3, 2020
+	 * @author Andrea Miranda Acevedo
+	 * @date May 13, 2020
 	 */
-	public static void ARoute(Graph graph, Node from, Node goal){
-		Node current = from;
-		LinkedList<Edge> L = current.getEdges();
+	public static LinkedList<Node> ARoute(Node from, Node goal){
+		if(from == goal){
+			explored.add(goal);
+			return explored;
+		}
 		
+		Node start = from; 
+		explored.add(start);
+		
+		LinkedList<Edge> L = from.getEdges();
+		Node temp;
 		for (Edge e : L) {
 			f = e.getValue() + calculateH(e.getNode(), goal);
-			Map.Entry<Node,Double> entry = new AbstractMap.SimpleEntry<Node, Double>(e.getNode(), f);
-			frontier.add(entry);
-		}
-		
-		while(current != goal){
-			explored.add(frontier.peek().getKey()); 
-			ARoute(graph, frontier.poll().getKey() ,goal);
+			temp = e.getNode();
 			
-		}
+			temp.setF(f);
+			frontier.add(temp);
+		}		
+
+		return ARoute(frontier.poll(), goal);
 		
 	}
 	
