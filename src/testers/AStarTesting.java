@@ -39,7 +39,9 @@ public class AStarTesting {
 		graph.addEdge(3,WA, CL);
 		graph.addEdge(2, WA, KN);
 		
-		
+		int speedLimit = 35;
+		double traffic = 0.50
+				;
 		LinkedList<Node<City>> list = Astar.ARoute(graph.getNode(NY), graph.getNode(CL));
 		System.out.println("Traveled cities:");
 		for(Node<City> node: list) {

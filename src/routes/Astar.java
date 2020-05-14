@@ -1,16 +1,13 @@
 package routes;
 
-import java.util.AbstractMap;
+
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 import elements.City;
 import elements.Road;
 import graph.Edge;
-import graph.Graph;
 import graph.Node;
 
 public class Astar {
@@ -45,20 +42,27 @@ public class Astar {
 		for (Edge e : L) {
 			f = e.getValue() + calculateH(e.getNode(), goal);
 			temp = e.getNode();
-			
 			temp.setF(f);
+			System.out.println("City: " + temp.get().getName() +"     \n"+ " Edge: " + e.getValue() + "   f: " + f +
+				"   Coordinates: (" +temp.get().getX() + ", " + temp.get().getY() + ")\n");
 			frontier.add(temp);
 		}		
 
 		return ARoute(frontier.poll(), goal);
 		
 	}
+
+
+
+	private static double calculateH(Node<City> from, Node<City> goal) {
+		return Road.getDistance(from, goal);
+	}	
 	
-	
-	
-	public static double calculateH(Node<City> from, Node<City> to){
-		return Road.getDistance(from,to);
+	/*
+	public static double calculateH(Node<City> from, Node<City> to, int speedLimit, double traffic){
+		return Road.TravelTime(Road.getDistance(from, to), speedLimit, traffic);
 	}
+	*/
 	
 	
 

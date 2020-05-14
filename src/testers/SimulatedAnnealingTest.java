@@ -14,7 +14,7 @@ import routes.GraphTraversal;
 import routes.SimulatedAnnealing;
 
 /**
- * There is a really really small probability of SimulatedAnnealing not finding the global Minima and failing the Tests.
+ * There is a really really small probability of SimulatedAnnealing not finding the global Minimal and failing the Tests.
  * @author Michael J. Alvarado
  *	
  */

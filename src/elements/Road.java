@@ -16,7 +16,7 @@ public class Road {
 		this.speedLimit = speedLimit;
 	}
 	
-	private double TravelTime(double distance, int speedLimit, double traffic) {
+	public static double TravelTime(double distance, int speedLimit, double traffic) {
 		double time = distance/speedLimit;
 		//traffic affects travel-time, is given by a percentage of extra-time
 		//traffic depends on the current time it takes

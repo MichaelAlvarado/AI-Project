@@ -22,13 +22,6 @@ public class Node<E> implements Comparable<Node>{
 	 * @date May 13, 2020
 	 */
 
-	/*
-	// Coordinates
-	double X;
-	double Y;
-
-*/
-
 	//Node Info
 	E object;
 	LinkedList<Edge> edges;
@@ -80,25 +73,6 @@ public class Node<E> implements Comparable<Node>{
 		edges.add(edge);
 	}
 
-/*	
-	public double getX() {
-		return X;
-	}
-
-	public void setX(double x) {
-		this.X = x;
-	}
-
-	public double getY() {
-		return Y;
-	}
-
-	public void setY(double y) {
-		this.Y = y;
-	}
-	
- */
-	
 	public double getF() {
 		return f;
 	}

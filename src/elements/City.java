@@ -14,6 +14,7 @@ public class City {
 		this.y = y;
 	}
 	
+	//Setters and getters
 	public String getName() {
 		return name;
 	}
