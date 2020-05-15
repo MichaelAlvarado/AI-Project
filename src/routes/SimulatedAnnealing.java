@@ -12,8 +12,8 @@ import graph.Node;
 public class SimulatedAnnealing {
 
 	//Cooling Parameters
-	protected static double max_Temp = 35;
-	protected static double min_Temp = 0.0001;
+	protected static double max_Temp = 140;
+	protected static double min_Temp = 0.00001;
 	//For linear Cooling (Use on linearTemperatureSchedule)
 	protected static double cooling_rate = 0.05;
 	//For percentage Cooling (Use on AlphaTemperatureSchedule)

@@ -137,9 +137,10 @@ public class PuertoRico extends Graph<City>{
 		roads.add(a29);
 		roads.add(a30);
 		roads.add(a31);
-		
+		int i=0;
 		for(Road road: roads) {
 			addEdge(road.TravelTime(), road.getCity1(), road.getCity2());
+			i++;
 		}
 	}
 }

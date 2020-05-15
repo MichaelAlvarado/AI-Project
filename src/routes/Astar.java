@@ -35,7 +35,7 @@ public class Astar {
 	/**
 	 * A* helper recursive method
 	 */
-	public static LinkedList<Node<City>> ARouteH(Node<City> from, Node<City> goal){
+	private static LinkedList<Node<City>> ARouteH(Node<City> from, Node<City> goal){
 		
 		if(explored.contains(goal)){
 			return explored;

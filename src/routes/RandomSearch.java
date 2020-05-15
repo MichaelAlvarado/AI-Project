@@ -9,7 +9,7 @@ import graph.Node;
 
 public class RandomSearch {
 
-	protected static int iterations = 600;
+	protected static int iterations = 200;
 
 	protected static Random rand = new Random();
 
