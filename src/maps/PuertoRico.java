@@ -8,6 +8,20 @@ import graph.Graph;
 
 public class PuertoRico extends Graph<City>{
 
+	private double highwayTraffic; //Traffic that belongs to highways
+	private double streetTraffic; //Traffic that belongs to street
+	
+
+	public PuertoRico(double highwayTraffic, double streetTraffic) {
+		super();
+		this.highwayTraffic = highwayTraffic;
+		this.streetTraffic = streetTraffic;
+		initNode();
+		initEdge();
+	}
+
+
+	//Puerto Rico Cities
 	public City cayey = new City("Cayey",18.1147676,-66.1677892);
 	public City salinas = new City("Salinas",18.0045791,-66.3244161);
 	public City santaIsabel = new City("Santa Isabel",17.9810439,-66.4269804);
@@ -30,12 +44,6 @@ public class PuertoRico extends Graph<City>{
 	public City sanGerman = new City("San German",18.0831448,-67.0519916);
 	public City mayaguez = new City("Mayaguez",18.2019879,-67.1686796);
 	public City aguadilla = new City("Aguadilla",18.419396,-67.1711135);
-	
-	public PuertoRico() {
-		super();
-		initNode();
-		initEdge();
-	}
 
 	private void initNode() {
 		addNode(cayey);
@@ -64,38 +72,39 @@ public class PuertoRico extends Graph<City>{
 
 	private void initEdge() {
 		LinkedList<Road> roads = new LinkedList<Road>();
-		Road a0 = new Road(ponce, santaIsabel, 24, 1, 0);
-		Road a1 = new Road(salinas, santaIsabel, 12, 1, 0);
-		Road a2 = new Road(salinas, cayey, 28, 1, 0);
-		Road a3 = new Road(salinas, arroyo, 33, 1, 0);
-		Road a4 = new Road(arroyo, humacao, 50, 1, 0);
-		Road a5 = new Road(humacao, fajardo, 40, 1, 0);
-		Road a6 = new Road(humacao, caguas, 31, 1, 0);
-		Road a7 = new Road(canovana, fajardo, 32, 1, 0);
-		Road a8 = new Road(canovana, caguas, 36, 1, 0);
-		Road a9 = new Road(sanJuan, canovana, 30, 1, 0);
-		Road a10 = new Road(sanJuan, vegaBaja, 47, 1, 0);
-		Road a11 = new Road(sanJuan, caguas, 33, 1, 0);
-		Road a12 = new Road(cayey, caguas, 25, 1, 0);
-		Road a13 = new Road(cayey, barranquitas, 30, 1, 0);
-		Road a14 = new Road(barranquitas, santaIsabel, 40, 1, 0);
-		Road a15 = new Road(barranquitas, villalba, 33, 1, 0);
-		Road a16 = new Road(ponce, villalba, 30, 1, 0);
-		Road a17 = new Road(ponce, adjunta, 25, 1, 0);
-		Road a18 = new Road(ponce, yauco, 35, 1, 0);		
-		Road a19 = new Road(yauco, sanGerman, 27, 1, 0);
-		Road a20 = new Road(yauco, lajas, 30, 1, 0);
-		Road a21 = new Road(lajas, sanGerman, 5, 1, 0);
-		Road a22 = new Road(sanGerman, mayaguez, 20, 1, 0);
-		Road a23 = new Road(mayaguez, aguadilla, 28, 1, 0);
-		Road a24 = new Road(mayaguez, lares, 48, 1, 0);
-		Road a25 = new Road(lares, adjunta, 32, 1, 0);
-		Road a26 = new Road(lares, arecibo, 29, 1, 0);
-		Road a27 = new Road(aguadilla, arecibo, 50, 1, 0);
-		Road a28 = new Road(arecibo, manati, 30, 1, 0);
-		Road a29 = new Road(manati, barranquitas, 55, 1, 0);
-		Road a30 = new Road(manati, vegaBaja, 10, 1, 0);
-		Road a31 = new Road(vegaBaja, barranquitas, 47, 1, 0);
+		//Puerto Rico Roads
+		Road a0 = new Road(ponce, santaIsabel, 24, 100, highwayTraffic);
+		Road a1 = new Road(salinas, santaIsabel, 12, 100, highwayTraffic);
+		Road a2 = new Road(salinas, cayey, 28, 100, highwayTraffic);
+		Road a3 = new Road(salinas, arroyo, 33, 100, streetTraffic);
+		Road a4 = new Road(arroyo, humacao, 50, 100, streetTraffic);
+		Road a5 = new Road(humacao, fajardo, 40, 100, streetTraffic);
+		Road a6 = new Road(humacao, caguas, 31, 100, streetTraffic);
+		Road a7 = new Road(canovana, fajardo, 32, 100, streetTraffic);
+		Road a8 = new Road(canovana, caguas, 36, 100, streetTraffic);
+		Road a9 = new Road(sanJuan, canovana, 30, 100, streetTraffic);
+		Road a10 = new Road(sanJuan, vegaBaja, 47, 100, highwayTraffic);
+		Road a11 = new Road(sanJuan, caguas, 33, 100, highwayTraffic);
+		Road a12 = new Road(cayey, caguas, 25, 100, highwayTraffic);
+		Road a13 = new Road(cayey, barranquitas, 30, 100, streetTraffic);
+		Road a14 = new Road(barranquitas, santaIsabel, 40, 100, streetTraffic);
+		Road a15 = new Road(barranquitas, villalba, 33, 100, streetTraffic);
+		Road a16 = new Road(ponce, villalba, 30, 100, streetTraffic);
+		Road a17 = new Road(ponce, adjunta, 25, 100, streetTraffic);
+		Road a18 = new Road(ponce, yauco, 35, 100, highwayTraffic);		
+		Road a19 = new Road(yauco, sanGerman, 27, 100, highwayTraffic);
+		Road a20 = new Road(yauco, lajas, 30, 100, streetTraffic);
+		Road a21 = new Road(lajas, sanGerman, 5, 100, streetTraffic);
+		Road a22 = new Road(sanGerman, mayaguez, 20, 100, highwayTraffic);
+		Road a23 = new Road(mayaguez, aguadilla, 28, 100, highwayTraffic);
+		Road a24 = new Road(mayaguez, lares, 48, 100, streetTraffic);
+		Road a25 = new Road(lares, adjunta, 32, 100, streetTraffic);
+		Road a26 = new Road(lares, arecibo, 29, 100, streetTraffic);
+		Road a27 = new Road(aguadilla, arecibo, 50, 100, highwayTraffic);
+		Road a28 = new Road(arecibo, manati, 30, 100, highwayTraffic);
+		Road a29 = new Road(manati, barranquitas, 55, 100, streetTraffic);
+		Road a30 = new Road(manati, vegaBaja, 10, 100, highwayTraffic);
+		Road a31 = new Road(vegaBaja, barranquitas, 47, 100, streetTraffic);
 		roads.add(a0);
 		roads.add(a1);
 		roads.add(a2);

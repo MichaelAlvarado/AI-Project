@@ -9,7 +9,7 @@ import graph.Node;
 
 public class RandomSearch {
 
-	protected static int iterations = 100;
+	protected static int iterations = 200;
 
 	protected static Random rand = new Random();
 
@@ -26,7 +26,7 @@ public class RandomSearch {
 		for(int i = 0; i < iterations; i++) {
 			Node randomPath = randomPath(start, goal);
 			if(randomPath.getValue()<min.getValue()) {
-				min = randomPath;
+				min = randomPath.pathClone(start);
 			}
 		}
 //		System.out.println("Route Value: "+min.getValue());
