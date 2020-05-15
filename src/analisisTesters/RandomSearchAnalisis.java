@@ -1,18 +1,16 @@
-package testers;
+package analisisTesters;
 
 import java.util.LinkedList;
 
 import elements.City;
-import graph.Graph;
 import graph.GraphTraversal;
 import graph.Node;
 import maps.PuertoRico;
 import routes.RandomSearch;
-import routes.SimulatedAnnealing;
 
 public class RandomSearchAnalisis {
-	//Quantity of how many times to run the test
-		protected static int test_Quantity = 100;
+		//Quantity of how many times to run the test
+		protected static int test_Quantity = 1000;
 		
 		//Local variables
 		private static int failed = 0;
@@ -35,16 +33,18 @@ public class RandomSearchAnalisis {
 			 * Test and Analyze Simulated Annealing
 			 */
 			System.out.println("Random Search Analisis");
+			System.out.println("Iterations: " + RandomSearch.getIterations());
 			double successRate = randomSearchAnalisis(start, goal, expected);
 			System.out.println("Average Execution Time: "+(executionTime/test_Quantity)+" ms");
 			System.out.println("Success Rate: "+ (successRate*100)+"%");
 			
 		}
 		
+		@SuppressWarnings("rawtypes")
 		private static double randomSearchAnalisis(Node<City> start, Node<City> goal, LinkedList<City> expected) {
 			for(int t = 0; t < test_Quantity; t++) {
 				long timer = System.currentTimeMillis();
-				Node<String> e = RandomSearch.randomSearch(start, goal);
+				Node e = RandomSearch.randomSearch(start, goal);
 				executionTime += System.currentTimeMillis()-timer;
 				LinkedList<Node> result = GraphTraversal.reconstructPath(e);
 				//Verify if optimize value was found

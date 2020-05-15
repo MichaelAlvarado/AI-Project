@@ -12,42 +12,48 @@ import routes.SimulatedAnnealing;
 public class mainTesting {
 
 	public static void main(String[] args) {
-		Graph<String> graph = new Graph<String>();
-		graph.addNode("NY"); 
-		graph.addNode("NJ");
-		graph.addNode("Florida");
-		graph.addNode("Kansas");
-		graph.addNode("Ohio");
-		graph.addNode("California");
-		graph.addNode("Washington");
-
-		graph.addEdge(1.5,"NY", "NJ");
-		graph.addEdge(5, "NY", "Florida");
-		graph.addEdge(7, "Florida", "Ohio");
-		graph.addEdge(5, "Ohio", "Kansas");
-		graph.addEdge(10, "Kansas", "California");
-		graph.addEdge(10, "Kansas", "Florida");
-		graph.addEdge(3,"Washington", "California");
-		graph.addEdge(2, "Washington", "Kansas");
-
-//		LinkedList<Node> list = Annealing.annealingSearch(graph.getNode("NY"), graph.getNode("California"));
-		long executeTime = System.currentTimeMillis();
-		Node e = SimulatedAnnealing.simulatedAnnealingPath(graph.getNode("NY"), graph.getNode("California"));
-		System.out.println("Execution time of SimulatedAnneling: "+(System.currentTimeMillis()-executeTime)+" ms");
-		LinkedList<Node> list = GraphTraversal.reconstructPath(e);
-		System.out.println("Simulated Annealing Traveled cities:");
-		for(Node<String> node: list) {
-			System.out.println(node.get());
-		}
-		
-		executeTime = System.currentTimeMillis();
-		Node r = RandomSearch.randomSearch(graph.getNode("NY"), graph.getNode("California"));
-		System.out.println("Execution time of Random Search: "+(System.currentTimeMillis()-executeTime)+" ms");
-		list = GraphTraversal.reconstructPath(r);
-		System.out.println("Random Search Traveled cities:");
-		for(Node<String> node: list) {
-			System.out.println(node.get());
-		}
+	}
+	
+	
+	
+	
+	
+//		Graph<String> graph = new Graph<String>();
+//		graph.addNode("NY"); 
+//		graph.addNode("NJ");
+//		graph.addNode("Florida");
+//		graph.addNode("Kansas");
+//		graph.addNode("Ohio");
+//		graph.addNode("California");
+//		graph.addNode("Washington");
+//
+//		graph.addEdge(1.5,"NY", "NJ");
+//		graph.addEdge(5, "NY", "Florida");
+//		graph.addEdge(7, "Florida", "Ohio");
+//		graph.addEdge(5, "Ohio", "Kansas");
+//		graph.addEdge(10, "Kansas", "California");
+//		graph.addEdge(10, "Kansas", "Florida");
+//		graph.addEdge(3,"Washington", "California");
+//		graph.addEdge(2, "Washington", "Kansas");
+//
+////		LinkedList<Node> list = Annealing.annealingSearch(graph.getNode("NY"), graph.getNode("California"));
+//		long executeTime = System.currentTimeMillis();
+//		Node e = SimulatedAnnealing.simulatedAnnealingPath(graph.getNode("NY"), graph.getNode("California"));
+//		System.out.println("Execution time of SimulatedAnneling: "+(System.currentTimeMillis()-executeTime)+" ms");
+//		LinkedList<Node> list = GraphTraversal.reconstructPath(e);
+//		System.out.println("Simulated Annealing Traveled cities:");
+//		for(Node<String> node: list) {
+//			System.out.println(node.get());
+//		}
+//		
+//		executeTime = System.currentTimeMillis();
+//		Node r = RandomSearch.randomSearch(graph.getNode("NY"), graph.getNode("California"));
+//		System.out.println("Execution time of Random Search: "+(System.currentTimeMillis()-executeTime)+" ms");
+//		list = GraphTraversal.reconstructPath(r);
+//		System.out.println("Random Search Traveled cities:");
+//		for(Node<String> node: list) {
+//			System.out.println(node.get());
+//		}
 		
 		
 //		Graph<Integer> graph = new Graph<Integer>();
@@ -104,6 +110,5 @@ public class mainTesting {
 		//		System.out.println(graph.addEdge(0, 3, 7));
 		//		
 		//		BreadthFirstSearch.BFS(graph2, 0);
-	}
 
 }

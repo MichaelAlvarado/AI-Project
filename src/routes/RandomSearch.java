@@ -21,6 +21,7 @@ public class RandomSearch {
 	 * @param goal
 	 * @return the goal Node with path on its parents	
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Node randomSearch(Node start, Node goal) {
 		Node min = randomPath(start,goal);
 		for(int i = 0; i < iterations; i++) {
@@ -41,7 +42,7 @@ public class RandomSearch {
 	 * @param visited - Send a HashSet of already visited Node so the Algorithm wont travel through them again, if null it will assume no Nodes has been visited
 	 * @return the goal Node with path on its parents
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static Node randomPath(Node start, Node end) {
 
 		HashSet<Node> visited = new HashSet<Node>();
@@ -73,5 +74,11 @@ public class RandomSearch {
 			}
 		}
 		return currentNode.pathClone(start);
+	}
+	/*
+	 * Getters
+	 */
+	public static int getIterations() {
+		return iterations;
 	}
 }

@@ -1,5 +1,6 @@
 package routes;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
@@ -20,6 +21,49 @@ public class SimulatedAnnealing {
 	//Local Variable of use
 	private static Random rand = new Random();
 
+
+	/**
+	 * Simulated Annealing that returns its proccess
+	 * @author Michael J. Alvarado
+	 * @date May 10, 2020
+	 * @param start
+	 * @param goal
+	 * @return Map of info Acceptance, Values and Temperatures
+	 */
+	@SuppressWarnings("rawtypes")
+	public static HashMap<String, LinkedList<Double>> simulatedAnnealingPathAnalisis(Node start, Node goal) {
+		LinkedList<Double> temperatures = new LinkedList<Double>();
+		LinkedList<Double> chancesAcceptance = new LinkedList<Double>();
+		LinkedList<Double> values = new LinkedList<Double>();
+		//temparatures starts a its highest
+		double t = max_Temp;
+		Node s = randomPath(start, goal, null); 
+		//Uses temperature cooling
+		while (t > min_Temp) {
+			//Takes random Path
+			Node mutate = mutate(start, s);
+			double delta_e = s.getValue() - mutate.getValue();
+			double acceptance = Math.exp(-Math.abs(delta_e/t));
+			//Change paths to most effective
+			if(delta_e>0) {
+				s = mutate.pathClone(start);
+			}
+			//Changes of accepting a wrong move
+			else if (Math.random() < acceptance) {
+				s = mutate.pathClone(start);
+			}
+			t = temperatureSchedule(t);
+			temperatures.add(t);
+			values.add(s.getValue());
+			chancesAcceptance.add(acceptance);
+		}
+		HashMap<String, LinkedList<Double>> info = new HashMap<String, LinkedList<Double>>();
+		info.put("Acceptance", chancesAcceptance);
+		info.put("Values", values);
+		info.put("Temperatures", temperatures);
+		return info;
+	}
+	
 	/**
 	 * Generic Optimize Path Search using Simulated Annealing Search method
 	 * @author Michael J. Alvarado
@@ -168,5 +212,24 @@ public class SimulatedAnnealing {
 		}
 		path.addFirst(end);
 		return path;
+	}
+	
+	/*
+	 * Getters
+	 */
+	public static double getMax_Temp() {
+		return max_Temp;
+	}
+
+	public static double getMin_Temp() {
+		return min_Temp;
+	}
+
+	public static double getCooling_rate() {
+		return cooling_rate;
+	}
+
+	public static double getAlpha() {
+		return alpha;
 	}
 }
