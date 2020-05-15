@@ -1,4 +1,4 @@
-package testers;
+package analisisTesters;
 
 import java.util.LinkedList;
 
