@@ -22,9 +22,7 @@ public class AStarAnalisisPR2 {
 			//Expected Value
 			LinkedList<City> expected = new LinkedList<City>();
 			expected.add(pr2.salinas);
-			expected.add(pr2.santaIsabel);
-			expected.add(pr2.ponce);
-			expected.add(pr2.villalba);
+			expected.add(pr2.cayey);
 			expected.add(pr2.barranquitas);
 			
 			//AStar Test

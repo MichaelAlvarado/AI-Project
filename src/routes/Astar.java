@@ -15,11 +15,9 @@ public class Astar {
 	// total cost
 	static double f;
 	
-	static Queue<Node<City>> frontier = new PriorityQueue<Node<City>>();
+	static LinkedList<Node<City>> frontier = new LinkedList<Node<City>>();
 	//path
 	static LinkedList<Node<City>> explored = new LinkedList<Node<City>>();
-
-
 
 	/**
 	 * A recursively implementation of A* algorithm
@@ -29,6 +27,15 @@ public class Astar {
 	 * @date May 13, 2020
 	 */
 	public static LinkedList<Node<City>> ARoute(Node<City> from, Node<City> goal){
+		explored = new LinkedList<Node<City>>();
+		frontier = new LinkedList<Node<City>>();
+		return ARouteH(from, goal);
+	}
+	
+	/**
+	 * A* helper recursive method
+	 */
+	public static LinkedList<Node<City>> ARouteH(Node<City> from, Node<City> goal){
 		
 		if(explored.contains(goal)){
 			return explored;
@@ -54,7 +61,7 @@ public class Astar {
 			}
 		}
 		
-		return ARoute(temp, goal);		
+		return ARouteH(temp, goal);		
 	}
 
 
@@ -66,7 +73,7 @@ public class Astar {
 	 * @return double
 	 */
 	private static double calculateH(Node<City> from, Node<City> goal) {
-		return from.get().CalculationByDistance(goal.get())/75.0;
+		return from.get().CalculationByDistance(goal.get())/40.0;
 	}	
 	
 
