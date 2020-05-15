@@ -33,7 +33,9 @@ public class Astar {
 		}
 		
 		Node<City> start = from; 
-		explored.add(start);
+		if(!explored.contains(from)){
+			explored.add(start);
+		}
 		
 		LinkedList<Edge> L = from.getEdges();
 		
@@ -55,18 +57,9 @@ public class Astar {
 
 
 	private static double calculateH(Node<City> from, Node<City> goal) {
-		return Road.getDistance(from.get(), goal.get());
+		//return Road.getDistance(from.get(), goal.get());
+		return from.get().CalculationByDistance(goal.get());
 	}	
-	
-	
-	/*
-	 * Heuristic function using travel time, has to be fixed
-	 * 
-	public static double calculateH(Node<City> from, Node<City> to, int speedLimit, double traffic){
-		return Road.TravelTime(Road.getDistance(from, to), speedLimit, traffic);
-	}
-	*/
-	
 	
 
 	
