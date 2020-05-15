@@ -73,7 +73,7 @@ public class Astar {
 	 * @return double
 	 */
 	private static double calculateH(Node<City> from, Node<City> goal) {
-		return from.get().CalculationByDistance(goal.get())/40.0;
+		return from.get().CalculationByDistance(goal.get())/60.0;
 	}	
 	
 

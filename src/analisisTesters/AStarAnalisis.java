@@ -1,4 +1,4 @@
-package testers;
+package analisisTesters;
 
 import java.util.LinkedList;
 
@@ -7,9 +7,9 @@ import graph.Node;
 import maps.PuertoRico;
 import routes.Astar;
 
-public class AStarAnalisisPR1 {
+public class AStarAnalisis {
 	//Quantity of how many times to run the test
-		protected static int test_Quantity = 100;
+		protected static int test_Quantity = 1000;
 		
 		//Local variables
 		private static int failed = 0;
@@ -18,19 +18,20 @@ public class AStarAnalisisPR1 {
 		public static void main(String[] arg) {
 			//Set Up a testing Graph
 			PuertoRico pr1 = new PuertoRico(1,0);
-			PuertoRico pr2 = new PuertoRico(0.2,0.8); 
 			
 			//Expected Value
 			LinkedList<City> expected = new LinkedList<City>();
-			expected.add(pr2.salinas);
-			expected.add(pr2.santaIsabel);
-			expected.add(pr2.barranquitas);
+			expected.add(pr1.humacao);
+			expected.add(pr1.caguas);
+			expected.add(pr1.cayey);
+			expected.add(pr1.barranquitas);
+			expected.add(pr1.manati);
 			
 			//AStar Test
-			Node<City> start = pr1.getNode(pr1.salinas);
-			Node<City> goal = pr1.getNode(pr1.barranquitas);
+			Node<City> start = pr1.getNode(pr1.humacao);
+			Node<City> goal = pr1.getNode(pr1.manati);
 
-			System.out.println("A* Search Analisis (PR1 Configuration");
+			System.out.println("A* Search Analisis");
 			double successRate = AStarAnalisis(start, goal, expected);
 			
 			System.out.println("\nAverage Execution Time: "+(executionTime/test_Quantity)+" ms");

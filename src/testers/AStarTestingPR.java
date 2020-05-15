@@ -15,8 +15,8 @@ public class AStarTestingPR {
 		
 		System.out.println("\n----------------------------------------------------------------\n");
 		
-		Node<City> start2 = pr2.getNode(pr2.humacao);
-		Node<City> goal2 = pr2.getNode(pr2.manati);
+		Node<City> start2 = pr1.getNode(pr1.humacao);
+		Node<City> goal2 = pr1.getNode(pr1.manati);
 		
 		LinkedList<Node<City>> list2 = Astar.ARoute(start2, goal2);
 		System.out.println("Traveled cities PR2 Conf: \n");

@@ -143,7 +143,6 @@ public class BigMapTest {
 		expected.add(pr1.manati);
 //		assertTrue("Result is not the same size as expected", result.size()==expected.size());
 		for (int i = 0; i < result.size(); i++) {
-			System.out.println(((City)result.get(i).get()).getName());
 			assertTrue("Not the optimize solution", result.get(i).get().equals(expected.get(i)));
 		}
 	}
