@@ -86,14 +86,4 @@ public class Road {
 		
 		return Math.sqrt(dX * dX + dY * dY);
 	}
-	
-	/*
-	private int speedLimit() {
-		return this.speedLimit;
-	}
-	
-	private double getTraffic() {
-		return this.traffic;
-	}
-	*/
 }

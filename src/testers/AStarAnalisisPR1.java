@@ -3,15 +3,11 @@ package testers;
 import java.util.LinkedList;
 
 import elements.City;
-import graph.Graph;
-import graph.GraphTraversal;
 import graph.Node;
 import maps.PuertoRico;
 import routes.Astar;
-import routes.RandomSearch;
-import routes.SimulatedAnnealing;
 
-public class AStarAnalisis {
+public class AStarAnalisisPR1 {
 	//Quantity of how many times to run the test
 		protected static int test_Quantity = 100;
 		
@@ -36,10 +32,10 @@ public class AStarAnalisis {
 			Node<City> start = pr1.getNode(pr1.salinas);
 			Node<City> goal = pr1.getNode(pr1.barranquitas);
 
-			System.out.println("Random Search Analisis");
+			System.out.println("A* Search Analisis (PR1 Configuration");
 			double successRate = AStarAnalisis(start, goal, expected);
-			System.out.println("Average Execution Time: "+(executionTime/test_Quantity)+" ms");
-			System.out.println("Success Rate: "+ (successRate*100)+"%");
+			System.out.println("\nAverage Execution Time: "+(executionTime/test_Quantity)+" ms");
+			System.out.println("\nSuccess Rate: "+ (successRate*100)+"%");
 			
 		}
 		

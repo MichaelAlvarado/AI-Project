@@ -10,7 +10,6 @@ import routes.Astar;
 public class AStarTestingPR {
 	public static void main(String[] args){
 		
-		
 		PuertoRico pr1 = new PuertoRico(1,0);
 		PuertoRico pr2 = new PuertoRico(0.2,0.8); 
 		
