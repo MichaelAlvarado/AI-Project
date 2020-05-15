@@ -34,6 +34,7 @@ public class AStarAnalisisPR1 {
 
 			System.out.println("A* Search Analisis (PR1 Configuration");
 			double successRate = AStarAnalisis(start, goal, expected);
+			
 			System.out.println("\nAverage Execution Time: "+(executionTime/test_Quantity)+" ms");
 			System.out.println("\nSuccess Rate: "+ (successRate*100)+"%");
 			
@@ -43,6 +44,7 @@ public class AStarAnalisisPR1 {
 			for(int t = 0; t < test_Quantity; t++) {
 				long timer = System.currentTimeMillis();
 				LinkedList<Node<City>> result = Astar.ARoute(start, goal);
+
 				executionTime += System.currentTimeMillis()-timer;
 				//Verify if optimize value was found
 				for (int i = 0; i < result.size(); i++) {

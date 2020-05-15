@@ -31,32 +31,30 @@ public class Astar {
 	public static LinkedList<Node<City>> ARoute(Node<City> from, Node<City> goal){
 		
 		if(explored.contains(goal)){
-			//explored.add(goal);
 			return explored;
 		}
 		
 		if(!explored.contains(from)){
 			explored.add(from);
 		}
-		
-		
 		LinkedList<Edge> L = from.getEdges();
+		
 		for (Edge edge : L) {
 			if(!frontier.contains(edge)){
 				frontier.add(edge.getNode());
 			}
 		}
-		
-		Node<City> temp;
-		
+		Node<City> temp = L.getFirst().getNode();
+
 		for (Edge e : L) {
 			f = e.getValue() + calculateH(e.getNode(), goal);
-			temp = e.getNode();
-			temp.setF(f);
-		}		
-
-		return ARoute(frontier.poll(), goal);
+			e.getNode().setF(f);
+			if(temp.getF() > f){
+				temp = e.getNode();
+			}
+		}
 		
+		return ARoute(temp, goal);		
 	}
 
 
@@ -68,8 +66,7 @@ public class Astar {
 	 * @return double
 	 */
 	private static double calculateH(Node<City> from, Node<City> goal) {
-
-		return from.get().CalculationByDistance(goal.get());
+		return from.get().CalculationByDistance(goal.get())/75.0;
 	}	
 	
 
