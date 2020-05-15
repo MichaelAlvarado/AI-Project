@@ -13,9 +13,9 @@ public class SimulatedAnnealing {
 	//Cooling Parameters
 	protected static double max_Temp = 100;
 	protected static double min_Temp = 0.0001;
-	//For linear Cooling
+	//For linear Cooling (Use on linearTemperatureSchedule)
 	protected static double cooling_rate = 0.05;
-	//For percentage Cooling
+	//For percentage Cooling (Use on AlphaTemperatureSchedule)
 	protected static double alpha = 0.99; //the temperature decrease (1-alpha) percent each iteration
 	//Local Variable of use
 	private static Random rand = new Random();
@@ -36,19 +36,18 @@ public class SimulatedAnnealing {
 		//Uses temperature cooling
 		while (t > min_Temp) {
 			//Takes random Path
-			Node mutate = mutate(start, goal);
+			Node mutate = mutate(start, s);
 			double delta_e = s.getValue() - mutate.getValue();
 			//Change paths to most effective
 			if(delta_e>0) {
-				s = reconstructPath(start, mutate).getLast();
+				s = mutate.pathClone(start);
 			}
 			//Changes of accepting a wrong move
 			else if (Math.random() < Math.exp(delta_e/t)) {
-				s = reconstructPath(start, mutate).getLast();
+				s = mutate.pathClone(start);
 			}
 			t = temperatureSchedule(t);
 		}
-//		System.out.println("Route Value: "+s.getValue());
 		return s;
 	}
 
@@ -57,7 +56,7 @@ public class SimulatedAnnealing {
 	 * @author Michael J. Alvarado
 	 * @date May 10, 2020
 	 * @param temp
-	 * @return
+	 * @return temperature use in the Simulated Annealing Process
 	 */
 	private static double temperatureSchedule(double temp) {
 		return AlphaTemperatureSchedule(temp);
@@ -77,7 +76,7 @@ public class SimulatedAnnealing {
 	 * Cooling Temperature by a (1-alpha) percent rate (Better than linear Temperature Schedule)
 	 * @author Michael J. Alvarado
 	 * @date May 10, 2020
-	 * @return returns the 
+	 * @return 
 	 */
 	private static double AlphaTemperatureSchedule(double temp) {
 		return temp *= alpha;
@@ -100,7 +99,6 @@ public class SimulatedAnnealing {
 		for(int i = 0; i < nodeIndex; i++) {
 			visited.add(path.get(i));
 		}
-		//		start = path.get(rand.nextInt(path.size()-2)+1); //take a random node to mutate
 		return randomPath(path.get(nodeIndex), end, visited);
 	}
 
@@ -115,13 +113,13 @@ public class SimulatedAnnealing {
 	 */
 	@SuppressWarnings("rawtypes")
 	private static Node randomPath(Node start, Node end, HashSet<Node> visited) {
-		
+		//List of visited Node to avoid revisiting
 		if(visited == null)
 			visited = new HashSet<Node>();
 		
 		Node currentNode = start;
-		
-		while(!currentNode.equals(end)) {
+		//Make a random path till the goal is reach
+		while(!currentNode.get().equals(end.get())) {
 			visited.add(currentNode);
 			//Random Children
 			Edge edge = (Edge) currentNode.getEdges().get(rand.nextInt(currentNode.getNodeChildrens().size()));
@@ -133,6 +131,7 @@ public class SimulatedAnnealing {
 				children.setValue(currentNode.getValue()+edge.getValue());
 				currentNode = children;
 			}
+			//Return the a previous Node if its stuck in a loop
 			else{
 				boolean stuck = true;
 				for(Node node: (LinkedList<Node>)currentNode.getNodeChildrens()) {
@@ -150,7 +149,7 @@ public class SimulatedAnnealing {
 
 
 	/**
-	 * Testing Purposes
+	 * Makes a clone path
 	 * @author Michael J. Alvarado
 	 * @date May 13, 2020
 	 * @param start
@@ -158,10 +157,10 @@ public class SimulatedAnnealing {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static LinkedList<Node> reconstructPath(Node start, Node end){
+	private static LinkedList<Node> reconstructPath(Node start, Node end){
 		Node pathNode = end.pathClone(start);
 		LinkedList<Node> path = new LinkedList<Node>();
-		while(!pathNode.equals(start)) {
+		while(!pathNode.get().equals(start.get())) {
 			path.addFirst(pathNode);
 			pathNode = pathNode.getParent();
 		}
