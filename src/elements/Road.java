@@ -81,8 +81,8 @@ public class Road {
 	}
 	
 	public static double getDistance(City  from, City  to) {
-		double dX = (from.getX() - to.getX());
-		double dY = (from.getY() - to.getY());
+		double dX = (to.getX() - from.getX());
+		double dY = (to.getY() - from.getY());
 		
 		return Math.sqrt(dX * dX + dY * dY);
 	}
