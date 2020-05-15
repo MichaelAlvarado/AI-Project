@@ -31,6 +31,7 @@ public class SimulatedAnnealingAnalisis {
 		//Simulated Annealing Test
 		Node<City> start = pr1.getNode(pr1.humacao);
 		Node<City> goal = pr1.getNode(pr1.manati);
+		
 		/*
 		 * Test and Analyze Simulated Annealing
 		 */

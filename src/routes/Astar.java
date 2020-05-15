@@ -22,22 +22,30 @@ public class Astar {
 
 
 	/**
-	 * A* route path finding
+	 * A recursively implementation of A* algorithm
 	 * @author Andrea Miranda Acevedo
+	 * @param Node<City> from
+	 * @param Node<City> goal
 	 * @date May 13, 2020
 	 */
 	public static LinkedList<Node<City>> ARoute(Node<City> from, Node<City> goal){
-		if(from == goal){
-			explored.add(goal);
+		
+		if(explored.contains(goal)){
+			//explored.add(goal);
 			return explored;
 		}
 		
-		Node<City> start = from; 
 		if(!explored.contains(from)){
-			explored.add(start);
+			explored.add(from);
 		}
 		
+		
 		LinkedList<Edge> L = from.getEdges();
+		for (Edge edge : L) {
+			if(!frontier.contains(edge)){
+				frontier.add(edge.getNode());
+			}
+		}
 		
 		Node<City> temp;
 		
@@ -45,9 +53,6 @@ public class Astar {
 			f = e.getValue() + calculateH(e.getNode(), goal);
 			temp = e.getNode();
 			temp.setF(f);
-			System.out.println("City: " + temp.get().getName() +"     \n"+ " Edge: " + e.getValue() + "   f: " + f +
-				"   Coordinates: (" +temp.get().getX() + ", " + temp.get().getY() + ")\n");
-			frontier.add(temp);
 		}		
 
 		return ARoute(frontier.poll(), goal);
@@ -55,7 +60,13 @@ public class Astar {
 	}
 
 
-
+	/**
+	 * Method to calculate the Heuristic function from a state node to the goal state node.
+	 * @author Andrea C. Miranda Acevedo
+	 * @param Node<City> from
+	 * @param Node<City> goal
+	 * @return double
+	 */
 	private static double calculateH(Node<City> from, Node<City> goal) {
 		//return Road.getDistance(from.get(), goal.get());
 		return from.get().CalculationByDistance(goal.get());
