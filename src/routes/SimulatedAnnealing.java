@@ -139,7 +139,7 @@ public class SimulatedAnnealing {
 	private static Node mutate(Node start, Node end) {
 		//Takes a random position from the path to make another route
 		LinkedList<Node> path = GraphTraversal.reconstructPath(start, end);
-		int nodeIndex = rand.nextInt(path.size()); //random Node to mutate from
+		int nodeIndex = rand.nextInt(path.size()-1); //random Node to mutate from
 		//Mark all previous Node visited
 		HashSet<Node> visited = new HashSet<Node>();
 		for(int i = 0; i < nodeIndex; i++) {

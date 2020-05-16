@@ -2,17 +2,43 @@ package testers;
 
 import java.util.LinkedList;
 
+import elements.City;
 import graph.Graph;
 import graph.GraphTraversal;
 import graph.Node;
+import maps.PuertoRico;
 import routes.Astar;
 import routes.RandomSearch;
 import routes.SimulatedAnnealing;
 
 public class mainTesting {
 
-	public static void main(String[] args) {
+public static void main(String[] args){
+		
+		PuertoRico pr1 = new PuertoRico(1,0);
+		PuertoRico pr2 = new PuertoRico(0.2,0.8); 
+		
+		System.out.println("\n----------------------------------------------------------------\n");
+		
+		Node start = pr1.getNode(pr1.fajardo);
+		Node goal = pr1.getNode(pr1.mayaguez);
+		
+		LinkedList<Node> list2 = GraphTraversal.reconstructPath(start, RandomSearch.randomSearch(start, goal));
+		LinkedList<Node> list1 = GraphTraversal.reconstructPath(start, SimulatedAnnealing.simulatedAnnealingPath(start, goal));
+
+		System.out.println("Random Search Traveled cities PR2 Conf: \n");
+		for(Node<City> node: list2) {
+			System.out.println(node.get().getName());
+		}
+		
+		System.out.println("Simulated Annealing Traveled cities PR2 Conf: \n");
+		for(Node<City> node: list1) {
+			System.out.println(node.get().getName());
+		}
+		
+		
 	}
+
 	
 	
 	
